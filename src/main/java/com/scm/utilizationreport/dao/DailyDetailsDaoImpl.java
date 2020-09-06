@@ -49,7 +49,6 @@ public class DailyDetailsDaoImpl implements DailyDetailsDao {
 		q.setParameter(EMP_ID, empId);
 		long count = (long) q.uniqueResult();
 		if (count == 1) {
-			log.info("Inside IF loop DaoImple File");
 			String hql1 = "select utilizationReportDailyDetailsMstId FROM utilization_report_daily_details_mst c where c.submittedDate = '"
 					+ startDate + "' and c.empId = '" + empId + "'";
 			Query q2 = session.createQuery(hql1);
@@ -68,7 +67,6 @@ public class DailyDetailsDaoImpl implements DailyDetailsDao {
 			session.close();
 			sessionFactory.close();
 		} else {
-			log.info("Inside ELSE loop DaoImple File");
 			session.save(details);
 			session.getTransaction().commit();
 			session.close();
