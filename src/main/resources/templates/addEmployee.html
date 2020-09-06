@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/js/AddOrRemove.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="/css/modal.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<title>Add an Employee</title>
+<meta charset="utf-8">
+</head>
+<body onload="initialFunction()">
+	<nav>
+		<div class="nav-wrapper">
+			<a href="/addOrRemoveEmployee" class="brand-logo">&nbsp;&nbsp;&nbsp;Add
+				an Employee</a>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button class="btn waves-effect waves-light"
+		onclick="backToDashboard()" id="show-button">Back to List</button>
+	<div id="submitForm">
+		<form id="myForm" role="form" method="POST"
+			th:action="@{/saveEmployeeDetails}"
+			th:object="${employeeGroupDetails}">
+			<div class="container white"
+				style="min-height: : 100vh; padding: 20px">
+				<div class="row">
+					<div class="row">
+						<div class="input-field col s5">
+							<strong>Enter Employee ID :</strong> <input type="text"
+								id="emp_id" th:field="*{empId}" placeholder="Ex: 2228"
+								onfocusout='emp_id_existence_check("is-emp-exists/");checkform()'
+								required></input>
+							<div id="message"></div>
+						</div>
+					</div>
+				</div>
+				<div id="emp_name_div_id">
+					<div class="row">
+						<div class="input-field col s5">
+							<strong>Enter Employee Name :</strong> <input type="text"
+								id="emp_name" th:field="*{empName}" placeholder="Ex: Jon Snow"
+								onfocusout='checkform();emp_name_check()' required></input>
+							<div id="emp_name_message"></div>
+						</div>
+					</div>
+				</div>
+				<div id="emp_group_name_div_id">
+					<div class="row">
+						<div class="input-field col s5">
+							<strong>Enter Employee Group Name :</strong> <input type="text"
+								id="emp_group_name" class="autocomplete-input"
+								name="autocomplete" placeholder="Ex: Inventory Management"
+								th:field="*{empGroupName}"
+								onfocusout='checkform();emp_group_name_check()' required></input>
+							<div id="emp_group_name_message"></div>
+						</div>
+					</div>
+				</div>
+				<br> <br>
+				<div id="buttons_id" align="middle">
+					<button class="btn waves-effect waves-light" type="submit"
+						id="submitButton">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

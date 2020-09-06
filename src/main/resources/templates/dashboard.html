@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/js/dashboard.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="/css/modal.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<title>Dashboard</title>
+<meta charset="utf-8">
+</head>
+<body onload="initialFunction()">
+	<nav>
+		<div class="nav-wrapper">
+			<a href="/dashboard" class="brand-logo">&nbsp;&nbsp;&nbsp;Dashboard</a>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<br>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="btn waves-effect waves-light" id="exportButton"
+			value="Export to CSV" onclick="myFunction()">Export to CSV</button>
+	</div>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<div class="row">
+		<div class="col s6">
+			<ul class="collection">
+				<li class="collection-item">
+					<div>
+						<p>
+							Employees who has not submitted for this week <strong>(
+							</strong> <strong th:text="${fullNameList.size()}"></strong><strong>
+								)</strong>
+							<button class="btn-flat" onclick="showEmployees()"
+								id="show-button">Expand Rows</button>
+							<button class="btn-flat" onclick="noShowEmployees()"
+								id="hide-button">Shrink Rows</button>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s5" id="un-submitted-employee-list-id">
+			<div th:if="${#lists.isEmpty(fullNameList)}">
+				<p>Everyone in SCM has submitted. You can download the Weekly
+					Utilization Report now.</p>
+			</div>
+			<div th:if="${not #lists.isEmpty(fullNameList)}">
+				<table>
+					<thead>
+						<tr>
+							<th id="empName">Employee Name</th>
+							<th id="groupName">Group Name</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="fullNameLis: ${fullNameList}">
+							<td th:text="${fullNameLis.fullName}"></td>
+							<td th:text="${fullNameLis.groupName}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s6">
+			<ul class="collection">
+				<li class="collection-item">
+					<div>
+						<p>
+							Daily Status
+							<button class="btn-flat" onclick="showDailyStatus()">View</button>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s6">
+			<ul class="collection">
+				<li class="collection-item">
+					<div>
+						<p>
+							Weekly Status
+							<button class="btn-flat" onclick="showWeeklyStatus()">View</button>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s6">
+			<ul class="collection">
+				<li class="collection-item">
+					<div>
+						<p>
+							Team Details
+							<button class="btn-flat" onclick="employeeInformation()">View</button>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s6">
+			<ul class="collection">
+				<li class="collection-item">
+					<div>
+						<p>
+							Individual Submission Details
+							<button class="btn-flat" onclick="submissionDetails()">View</button>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<a class="btn-floating btn-large cyan pulse feedback"
+			onclick="openInputPage()">+</a>
+	</div>
+</body>
+</html>

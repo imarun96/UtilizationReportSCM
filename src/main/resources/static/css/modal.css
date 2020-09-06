@@ -1,0 +1,59 @@
+.modal {
+	width: 30% !important;
+	max-height: 100% !important;
+	overflow-y: hidden !important;
+}
+
+#myBtn {
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 150px;
+	z-index: 99;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	background-color: #e4f222;
+	color: #ed772d;
+	cursor: pointer;
+	padding: 15px;
+	border-radius: 4px;
+}
+
+#myBtn:hover {
+	background-color: #555;
+}
+
+div.a {
+	text-align: center;
+}
+
+div.c {
+	text-align: right;
+}
+
+td {
+	word-wrap: break-word;
+	white-space: normal;
+}
+
+.b.thicker {
+	text-align: center;
+	font-weight: 700;
+}
+
+#button-close {
+	line-height: 12px;
+	width: 18px;
+	font-size: 8pt;
+	font-family: tahoma;
+	margin-top: 1px;
+	margin-right: 2px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+img {
+	border-radius: 50%;
+}

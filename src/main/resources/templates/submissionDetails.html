@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/js/submissionDetails.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="/css/modal.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<title>Submission Details</title>
+<meta charset="utf-8">
+</head>
+<body>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="/submissionDetails" class="brand-logo">&nbsp;&nbsp;&nbsp;Submission
+				Details</a>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button class="btn waves-effect waves-light"
+		onclick="backToDashboard()" id="show-button">Back to
+		Dashboard</button>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="row">
+		<div class="col s7 offset-s1" style="cursor: pointer">
+			<div>
+				<table id="myTable" style="table-layout: fixed; width: 1500px">
+					<thead>
+						<tr>
+							<th id="empId">Employee ID</th>
+							<th id="empName">Employee Name</th>
+							<th id="submittedDate">Submitted Date</th>
+							<th id="groupName">Group Name</th>
+							<th id="category">Category</th>
+							<th id="work">Work</th>
+							<th id="freeResource">Free Resource</th>
+							<th id="leave">Leave</th>
+							<th id="typeOfLeave">Half Day (or) Full Day</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr
+							th:each="utilizationReportDailyDetail: ${utilizationReportDailyDetails}"
+							th:data-id="${utilizationReportDailyDetail.utilizationReportDailyDetailsMstId}"
+							onclick="navigateToDetailURL(this.getAttribute('data-id'))">
+							<td th:text="${utilizationReportDailyDetail.empId}"></td>
+							<td th:text="${utilizationReportDailyDetail.empName}"></td>
+							<td th:text="${utilizationReportDailyDetail.submittedDate}"></td>
+							<td th:text="${utilizationReportDailyDetail.groupName}"></td>
+							<td><th:block
+									th:switch="${utilizationReportDailyDetail.categoryDiv}">
+									<h6 th:case="1" th:text="Catalog" />
+									<h6 th:case="3" th:text="'System QE'" />
+									<h6 th:case="2" th:text="DevOps" />
+									<h6 th:case="*" th:text="---" />
+								</th:block></td>
+							<td><th:block
+									th:switch="${utilizationReportDailyDetail.workDiv}">
+									<h6 th:case="1" th:text="YES" />
+									<h6 th:case="2" th:text="NO" />
+									<h6 th:case="*" th:text="NO" />
+								</th:block></td>
+							<td><th:block
+									th:switch="${utilizationReportDailyDetail.freeResourceDiv}">
+									<h6 th:case="1" th:text="YES" />
+									<h6 th:case="2" th:text="NO" />
+									<h6 th:case="*" th:text="NO" />
+								</th:block></td>
+							<td><th:block
+									th:switch="${utilizationReportDailyDetail.leaveDiv}">
+									<h6 th:case="1" th:text="YES" />
+									<h6 th:case="2" th:text="NO" />
+									<h6 th:case="*" th:text="---" />
+								</th:block></td>
+							<td><th:block
+									th:switch="${utilizationReportDailyDetail.ifLeaveDiv}">
+									<h6 th:case="1" th:text="'FULL DAY'" />
+									<h6 th:case="2" th:text="'HALF DAY'" />
+									<h6 th:case="*" th:text="---" />
+								</th:block></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

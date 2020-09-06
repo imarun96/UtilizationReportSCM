@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/js/updateEmployeeInformation.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="/css/modal.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<title>Update Employee Information</title>
+<meta charset="utf-8">
+</head>
+<body onload="ajaxAsyncRequest()">
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<div class="a">
+		<p>
+			<font size="8">Employee Detail</font>
+		</p>
+	</div>
+	<div id="submitForm">
+		<form id="myForm" role="form" method="PUT"
+			th:action="@{/updateEmployeeDetails}"
+			th:object="${employeeGroupDetails}">
+			<div class="container white"
+				style="min-height: : 100vh; padding: 20px">
+				<div class="row">
+					<div class="input-field col s5">
+						<strong>Employee ID :</strong> <input type="text" id="emp_id"
+							th:field="*{empId}" disabled></input>
+					</div>
+				</div>
+			</div>
+			<div class="container white"
+				style="min-height: : 100vh; padding: 20px">
+				<div class="row">
+					<div class="input-field col s5">
+						<strong>Employee Name :</strong> <input type="text" id="emp_name"
+							onfocusout='checkform();emp_name_check()' th:field="*{empName}"
+							placeholder="Ex: Jon Snow" required></input>
+						<div id="emp_name_message"></div>
+					</div>
+				</div>
+			</div>
+			<div class="container white"
+				style="min-height: : 100vh; padding: 20px">
+				<div class="row">
+					<div class="input-field col s5">
+						<strong>Employee Group Name :</strong> <input type="text"
+							id="emp_group_name" class="autocomplete-input"
+							name="autocomplete" placeholder="Ex: Inventory Management"
+							onfocusout='checkform();emp_group_name_check()'
+							th:field="*{empGroupName}" required></input>
+						<div id="emp_group_name_message"></div>
+					</div>
+				</div>
+			</div>
+			<div id="buttons_id" align="middle">
+				<button class="btn waves-effect waves-light" type="submit"
+					id="submitButton">Submit</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+		</form>
+		<button class="btn waves-effect waves-light" id="cancel-button-id"
+			onclick="backToDetail()">Cancel</button>
+	</div>
+</body>
+</html>

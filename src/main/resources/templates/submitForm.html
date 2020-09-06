@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/js/inputPage.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="/css/modal.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<title>Utilization Report</title>
+<meta charset="utf-8">
+</head>
+<body onload="initialFunction()">
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<div class="a">
+		<p>
+			<font size="8">Weekly Utilization Report</font>
+		</p>
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="btn waves-effect waves-light"
+			onclick="backToDashboard()" id="show-button">Back to
+			Dashboard</button>
+	</div>
+	<div id="submitForm">
+		<form role="form" method="POST" th:action="@{/saveDetails}"
+			th:object="${utilizationReportDailyDetails}">
+			<div class="container white"
+				style="min-height: : 100vh; padding: 20px">
+				<div class="row">
+					<div class="input-field col s5">
+						<strong>Enter Employee ID :</strong> <input type="text"
+							id="emp_id" th:field="*{empId}" placeholder="Ex: 2228"
+							onfocusout='ajaxAsyncRequest("get-emp-groupname/")' required></input>
+						<div id="message"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s5">
+						<strong>Enter Group Name :</strong> <input type="text"
+							id="group_name" class="autocomplete-input" name="autocomplete"
+							th:field="*{groupName}" placeholder="Ex: Inventory Management"
+							required></input>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s5">
+						<strong>Submitted Date :</strong><input type="date"
+							id="submitted_date" th:field="*{submittedDate}" required></input>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s5">
+						<strong>Leave ?</strong><select class="browser-default"
+							th:field="*{leaveDiv}" onchange="hideAndDisplayFunction()"
+							id="leave_select_div" required>
+							<option value="" selected>Choose your option</option>
+							<option value="1">Yes</option>
+							<option value="2">No</option>
+						</select>
+					</div>
+				</div>
+				<div class="row" id="hide_id">
+					<div class="input-field col s5">
+						<strong>Select Leave Type</strong><select class="browser-default"
+							th:field="*{ifLeaveDiv}" id="if-leave-id">
+							<option value="" selected>Choose your option</option>
+							<option value="1">Full Day</option>
+							<option value="2">Half Day</option>
+						</select>
+					</div>
+				</div>
+				<div class="row" id="hide_work_div_id">
+					<div class="input-field col s5">
+						<strong>Do you have Work ?</strong><select class="browser-default"
+							th:field="*{workDiv}" id="work_div_id"
+							onChange="hideDivElementFunction()">
+							<option value="" selected>Choose your option</option>
+							<option value="1">Yes</option>
+							<option value="2">No</option>
+						</select>
+					</div>
+				</div>
+				<div class="row" id="free_resource_div_id">
+					<div class="input-field col s5">
+						<strong>Free Resource ?</strong><select class="browser-default"
+							th:field="*{freeResourceDiv}" id="free-resource-required-id">
+							<option value="" selected>Choose your option</option>
+							<option value="1">Yes</option>
+							<option value="2">No</option>
+						</select>
+					</div>
+				</div>
+				<div class="row" id="category-hide-id">
+					<div class="input-field col s5">
+						<strong>Enter Category : </strong><select class="browser-default"
+							th:field="*{categoryDiv}" id="category-required-hide-id">
+							<option value="" selected>Choose your option</option>
+							<option value="1">Catalog</option>
+							<option value="2">DevOps</option>
+							<option value="3">System QE</option>
+						</select>
+					</div>
+				</div>
+				<div align="middle">
+					<button class="btn waves-effect waves-light modal-trigger"
+						data-target="confirmation-dialog">Submit</button>
+					<div class="modal" id="confirmation-dialog">
+						<div class="modal-content">
+							<h5>Are you sure you want to submit this record ?</h5>
+							<br> <br>
+							<div align="middle">
+								<button class="btn waves-effect waves-light" type="submit"
+									id="submitButton">Submit</button>
+							</div>
+						</div>
+						<div>
+							<br> <br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/js/loadDetail.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="/css/modal.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<title>Daily Submission Detail</title>
+<meta charset="utf-8">
+</head>
+<body onload="ajaxAsyncRequest()">
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<div class="a">
+		<p>
+			<font size="8">Daily Submission Detail</font>
+		</p>
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="btn waves-effect waves-light" onclick="backToList()"
+			id="show-button">Back to List</button>
+	</div>
+	<div class="container white" style="min-height: : 100vh; padding: 20px">
+		<div class="row">
+			<div class="input-field col s5">
+				<strong>Employee ID :</strong> <input type="text" id="emp_id"
+					readonly></input>
+			</div>
+		</div>
+	</div>
+	<div class="container white" style="min-height: : 100vh; padding: 20px">
+		<div class="row">
+			<div class="input-field col s5">
+				<strong>Employee Name :</strong> <input type="text" id="emp_name"
+					readonly></input>
+			</div>
+		</div>
+	</div>
+	<div class="container white" style="min-height: : 100vh; padding: 20px">
+		<div class="row">
+			<div class="input-field col s5">
+				<strong>Submitted Date :</strong> <input type="text"
+					id="submitted_date" readonly></input>
+			</div>
+		</div>
+	</div>
+	<div class="container white" style="min-height: : 100vh; padding: 20px">
+		<div class="row">
+			<div class="input-field col s5">
+				<strong>Group Name :</strong> <input type="text" id="group_name"
+					readonly></input>
+			</div>
+		</div>
+	</div>
+	<div class="container white" style="min-height: : 100vh; padding: 20px">
+		<div class="row">
+			<div class="input-field col s5">
+				<strong>Category :</strong> <input type="text" id="category_div"
+					readonly></input>
+			</div>
+		</div>
+	</div>
+	<div class="container white" style="min-height: : 100vh; padding: 20px">
+		<div class="row">
+			<div class="input-field col s5">
+				<strong>Work :</strong> <input type="text" id="work_div" readonly></input>
+			</div>
+		</div>
+	</div>
+	<div class="container white" style="min-height: : 100vh; padding: 20px">
+		<div class="row">
+			<div class="input-field col s5">
+				<strong>Free Resource :</strong> <input type="text"
+					id="free_resource_div" readonly></input>
+			</div>
+		</div>
+	</div>
+	<div class="container white" style="min-height: : 100vh; padding: 20px">
+		<div class="row">
+			<div class="input-field col s5">
+				<strong>Leave :</strong> <input type="text" id="leave_div" readonly></input>
+			</div>
+		</div>
+	</div>
+	<div class="container white" style="min-height: : 100vh; padding: 20px">
+		<div class="row">
+			<div class="input-field col s5">
+				<strong>Half Day (or) Full Day :</strong> <input type="text"
+					id="if_leave_div" readonly></input>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
